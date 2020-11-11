@@ -29,6 +29,13 @@ off_t LastLoc;                                          /*last cursor location*/
 bool editHex;						/* flag to edit h or a*/
 int SIZE_CH;                                            /* global winch flag  */
 
+
+void mystrcpy(const char * s, char * s2, size_t sz) {
+    for (int i = 0; i < (int)sz; i ++){
+        *s2++ = s[i];
+    }
+}
+
 int wacceptch(WINS *win, off_t len)
 {
     intmax_t tmp_max;
@@ -498,7 +505,7 @@ int wacceptch(WINS *win, off_t len)
 		if (tmpstr[0] != '\0' )			/* enter was hit so   */
 		{					/* don't change temp  */
 		    bzero(temp, 81);
-		    strncpy(temp, tmpstr, (strlen(tmpstr) > 80) 
+		    mystrcpy(temp, tmpstr, (strlen(tmpstr) > 80) 
 			    ? 80 : strlen(tmpstr));
 		}
 
